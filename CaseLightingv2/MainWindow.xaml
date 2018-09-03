@@ -1,0 +1,47 @@
+﻿    <Controls:MetroWindow  x:Class="CaseLightingv2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaseLightingv2"
+                       xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:effects="http://gu.se/Geometry"
+        mc:Ignorable="d"
+        Title="CaseLighting v2" Height="400" Width="500
+                       " ResizeMode="CanMinimize" WindowState="Minimized" >
+    <Grid>
+        <!--Controls-->
+        <Controls:ToggleSwitch Header="Enable Lighting" Name="enableToggle" Margin="10,10,315,293" IsChecked="True" Click="ToggleSwitch_Checked" />
+        <Controls:ToggleSwitch Header="Breating" Name="enableBreathing" Margin="10,81,315,222" IsChecked="False" Click="enableBreathing_Click" />
+        <Controls:ToggleSwitch Header="Special" Name="enableSpecial" Margin="10,205,315,98" IsChecked="False" Click="enableSpecial_Click" />
+        <Controls:SplitButton Name="specialDropdown" VerticalContentAlignment="Center" Margin="10,276,317,59" SelectionChanged="specialDropdown_SelectionChanged" SelectedIndex="0" Background="#FF252525" Foreground="#CC119EDA" ArrowBrush="#CC119EDA" BorderBrush="#FF252525">
+            <Controls:SplitButton.ItemsSource>
+                <x:Array Type="system:String">
+                    <system:String>Rainbow Swirl</system:String>
+                    <system:String>Rainbow </system:String>
+                    <system:String>CPU Use</system:String>
+                    <system:String>Audio In</system:String>
+                    <system:String>Christmas</system:String>
+                    <system:String>Keystroke</system:String>
+                </x:Array>
+            </Controls:SplitButton.ItemsSource>
+        
+        </Controls:SplitButton>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,333,0,0" Name="consoleBox" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" AcceptsReturn="True" KeyUp="textBox_KeyUp" ToolTip="port,&lt;com&gt; &#xA;sendAll,&lt;r&gt;,&lt;g&gt;,&lt;b&gt; &#xA;sendOne,&lt;n&gt;,&lt;r&gt;,&lt;g&gt;,&lt;b&gt;" Controls:TextBoxHelper.ClearTextButton="True" BorderBrush="#FF252525"/>
+        <Slider Name="breathSlider" Style="{DynamicResource FlatSlider}" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="167" Height="9" Minimum="10" Maximum="200" Value="100" ValueChanged="breathSlider_ValueChanged"/>
+       
+        
+        <!--Colour Wheel-->
+        <Canvas Margin="192,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="300" Name="dCanvas">
+            <Ellipse Name="hslWheel" Width="300" Height="300" Fill="#00000000">
+                <Ellipse.Effect>
+                    <effects:HsvWheelEffect />
+                </Ellipse.Effect>
+            </Ellipse>
+            <Ellipse Canvas.Left="150" Canvas.Top="150" x:Name="pickerPoint" Fill="#FF1F1F1F" Width="10" Height="10" MouseLeftButtonDown="PickerPoint_MouseLeftButtonDown" MouseLeftButtonUp="PickerPoint_MouseLeftButtonUp" MouseMove="PickerPoint_MouseMove"/>
+        </Canvas>
+        <Label x:Name="consoleOutput" Content="Console Output dummy" HorizontalAlignment="Left" Margin="192,333,0,0" VerticalAlignment="Top" Width="292" Foreground="#CC119EDA"/>
+
+    </Grid>
+</Controls:MetroWindow>
